@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Leads | Iaghe Advocacia</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/icon-32.png">
+  <link rel="apple-touch-icon" href="/assets/brand/icon-180.png">
+  <style>
+    :root {
+      --bg: #0A0A0A; --card: #171717; --card-2: #1F1F1F; --line: #262626; --line-2: #333;
+      --fg: #FAFAFA; --muted: #A3A3A3; --dim: #737373;
+      --c-visits: #A3A3A3; --c-leads: #FAFAFA; --c-conv: #D9B47E;
+      --wa: #22C55E; --danger: #F87171;
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--bg); color: var(--fg); font: 14px/1.5 var(--font); -webkit-font-smoothing: antialiased; }
+    button, input { font: inherit; color: inherit; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; border-radius: 6px; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 32px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); }
+
+    /* Login */
+    .login { min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 24px 16px; }
+    .login-card { width: 100%; max-width: 360px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 28px 24px; display: grid; gap: 16px; }
+    .login-card h1 { margin: 0; font-size: 15px; letter-spacing: .08em; font-weight: 600; }
+    .login-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .field { display: grid; gap: 6px; }
+    .field label { font-size: 12px; color: var(--muted); }
+    .field input { height: 40px; padding: 0 12px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px; }
+    .field input:focus { outline: none; border-color: var(--muted); }
+    .btn { height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line-2); background: var(--card-2); cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: .03em; }
+    .btn:hover { border-color: var(--muted); }
+    .btn-primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+    .btn-primary:hover { opacity: .9; }
+    .btn[disabled] { opacity: .6; cursor: progress; }
+    .msg { font-size: 13px; color: var(--danger); min-height: 1em; }
+
+    /* Topo */
+    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .top h1 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: .06em; }
+    .top p { margin: 4px 0 0; color: var(--muted); }
+
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; min-width: 0; }
+    .card + .card, .grid + .card { margin-top: 16px; }
+    .card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .card-head h2 { margin: 0; font-size: 14px; font-weight: 600; }
+    .range { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 11px; color: var(--muted); letter-spacing: .06em; }
+    .range input { height: 32px; padding: 0 8px; background: var(--bg); border: 1px solid var(--line-2); border-radius: 8px; font-size: 13px; }
+
+    /* Gráfico */
+    .chart { position: relative; width: 100%; }
+    .chart svg { display: block; width: 100%; height: 280px; overflow: visible; }
+    .chart .axis text { fill: var(--dim); font-size: 11px; font-variant-numeric: tabular-nums; }
+    .chart .grid line { stroke: var(--line); }
+    .tip { position: absolute; pointer-events: none; background: var(--card-2); border: 1px solid var(--line-2); border-radius: 8px; padding: 8px 10px; font-size: 12px; white-space: nowrap; transform: translate(-50%, -100%); }
+    .tip b { display: block; margin-bottom: 2px; font-weight: 600; }
+    .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 12px; color: var(--muted); font-size: 12px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 14px; height: 2px; border-radius: 2px; display: inline-block; }
+    .empty { color: var(--muted); text-align: center; padding: 32px 8px; }
+
+    /* Tabelas */
+    .table-wrap { overflow-x: auto; margin: 0 -20px; padding: 0 20px; }
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th { text-align: left; font-size: 11px; font-weight: 500; color: var(--dim); letter-spacing: .06em; text-transform: uppercase; padding: 0 12px 10px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    td { padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+    tr:last-child td { border-bottom: 0; }
+    td.num, th.num { text-align: right; }
+    .t-leads { min-width: 680px; }
+    .t-leads td { white-space: nowrap; }
+    .t-leads td:first-child { white-space: normal; min-width: 140px; max-width: 220px; overflow-wrap: anywhere; }
+    .muted { color: var(--muted); }
+    .wa { color: var(--fg); display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px; border-radius: 7px; border: 1px solid var(--line-2); text-decoration: none; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .wa:hover { border-color: var(--wa); color: var(--wa); }
+    .wa svg { width: 14px; height: 14px; color: var(--wa); }
+    .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .stat { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+    .stat span { font-size: 11px; color: var(--dim); letter-spacing: .06em; text-transform: uppercase; }
+    .stat b { display: block; margin-top: 2px; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    @media (max-width: 560px) { .stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; } .stat b { font-size: 18px; } .chart svg { height: 220px; } }
+  </style>
+</head>
+<body>
+  <!-- LOGIN -->
+  <main class="login" id="view-login" hidden>
+    <form class="login-card" id="login-form" novalidate>
+      <img src="/assets/brand/logo-iaghe-claro.png" width="478" height="207" alt="Iaghe Advocacia" style="height:44px;width:auto">
+      <h1>LEADS — IAGHE ADVOCACIA</h1>
+      <p>Acesso restrito à equipe.</p>
+      <div class="field">
+        <label for="l-user">Usuário</label>
+        <input id="l-user" name="user" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="l-pass">Senha</label>
+        <input id="l-pass" name="pass" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit" id="l-btn">ENTRAR</button>
+      <p class="msg" id="l-msg" role="alert"></p>
+    </form>
+  </main>
+
+  <!-- PAINEL -->
+  <div class="wrap" id="view-app" hidden>
+    <header class="top">
+      <div>
+        <h1>LEADS — IAGHE ADVOCACIA</h1>
+        <p id="subtitle">Carregando…</p>
+      </div>
+      <button class="btn" id="logout" type="button">SAIR</button>
+    </header>
+
+    <section class="card" aria-labelledby="h-evo">
+      <div class="card-head">
+        <h2 id="h-evo">Evolução diária</h2>
+        <div class="range">
+          <label for="d-from">DE</label><input type="date" id="d-from">
+          <label for="d-to">ATÉ</label><input type="date" id="d-to">
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span>Visitas</span><b id="s-visits">–</b></div>
+        <div class="stat"><span>Cadastros</span><b id="s-leads">–</b></div>
+        <div class="stat"><span>Conversão</span><b id="s-conv">–</b></div>
+      </div>
+      <div class="chart" id="chart"></div>
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:var(--c-visits)"></i>Visitas</span>
+        <span><i style="background:var(--c-leads)"></i>Cadastros</span>
+        <span><i style="background:var(--c-conv)"></i>Taxa de conversão (%)</span>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-lp">
+      <div class="card-head"><h2 id="h-lp">Conversão por LP</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>LP</th><th class="num">Visitas</th><th class="num">Leads</th><th class="num">Conv.</th></tr></thead>
+          <tbody id="t-lp"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-leads">
+      <div class="card-head"><h2 id="h-leads">Leads</h2></div>
+      <div class="table-wrap">
+        <table class="t-leads">
+          <thead><tr><th>Nome</th><th>WhatsApp</th><th>LP</th><th>Origem</th><th>Data</th><th>Ação</th></tr></thead>
+          <tbody id="t-leads"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>
