@@ -1,3 +1,4 @@
+[README.md](https://github.com/user-attachments/files/33691270/README.md)
 # LP Direito Bancário — Iaghe Advocacia
 
 Site estático (HTML/CSS/JS sem build), no mesmo padrão das LPs da ADS BR no Vercel.
@@ -20,8 +21,8 @@ Site estático (HTML/CSS/JS sem build), no mesmo padrão das LPs da ADS BR no Ve
 | `assets/js/redirect.js` | Lógica do `/redirect` |
 | `assets/js/dashboard.js` | Login (Supabase Auth), gráfico diário, conversão por LP, tabela de leads |
 | `assets/css/styles.css` | Tokens de cor/tipografia e todas as seções da LP |
-| `assets/fonts/` | Newsreader (títulos) e Figtree (texto), hospedadas no próprio site |
-| `assets/img/` | WebP em duas larguras: `equipe-retrato` (hero), `atendimento` (Como funciona, imagem gerada recortada sem o martelo), `dr-danyllo` (Escritório) — fotos reais do escritório; `documentos` (Superendividamento, imagem gerada recortada sem moedas). |
+| `assets/fonts/` | Poppins 400/600/700/800 (mesma fonte do site iagheadvocacia.com.br), hospedada no próprio site |
+| `assets/img/` | WebP em duas larguras: `dr-danyllo` (hero, mesma foto do site do escritório), `equipe-retrato` (Escritório), `atendimento` (Como funciona, imagem gerada recortada sem o martelo) — fotos reais; `documentos` (Superendividamento, imagem gerada recortada sem moedas). |
 | `assets/brand/` | Logo oficial (`logo-iaghe.png`, original) e versão clara para fundo escuro (`logo-iaghe-claro.png`, usada no header, rodapé, /redirect e login do painel); ícones da aba `icon-32.png` e `icon-180.png` (coluna dourada da marca) |
 | `assets/og.jpg` | Imagem de compartilhamento 1200×630 |
 | `vercel.json` | URLs limpas e cabeçalhos |
@@ -42,7 +43,8 @@ Site estático (HTML/CSS/JS sem build), no mesmo padrão das LPs da ADS BR no Ve
 
 ## Trocar quando o cliente enviar
 
-- **OAB, endereço, e-mail, CNPJ** → campos em `institucional`; só aparecem quando preenchidos.
+- **OAB e endereço** já preenchidos com os dados do site do escritório (registro OAB/TO nº 0791). E-mail e CNPJ → campos em `institucional`; só aparecem quando preenchidos.
+- **Assuntos dos botões** → lista `topics` em `config.js`. O assunto vai para `servico` (`Direito Bancário - <assunto>`) e para a mensagem do WhatsApp.
 - **Número do CRM** → `whatsappNumber` (confirmar antes de publicar).
 - **Domínio** → adicionar `<link rel="canonical">` e trocar `og:image` para URL absoluta.
 - **Meta Pixel** → só com ID real e abordagem de consentimento definida.
