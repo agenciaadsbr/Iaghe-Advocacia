@@ -9,6 +9,23 @@
   var LOGIN_EMAIL = "admin@" + SITE + ".adsbr.internal"; // usuário "Admin" na tela
   var CLIENT = "Iaghe Advocacia";
   var LP_LABEL = { "iag-advocacia": "Direito Bancário" };
+  // Separa as LPs do mesmo cliente: visitas pelo caminho da página, leads pelo início do "servico".
+  var LPS = cfg.lps || {};
+  function normPath(p) {
+    p = String(p || "/").split("?")[0].replace(/\.html$/, "").replace(/\/index$/, "/");
+    if (p.length > 1) p = p.replace(/\/+$/, "");
+    return p || "/";
+  }
+  function lpOfVisit(v) {
+    var p = normPath(v.path);
+    for (var k in LPS) if (normPath(LPS[k].path) === p) return LPS[k].servico;
+    return LP_LABEL[v.site] || v.site;
+  }
+  function lpOfLead(l) {
+    var s = String(l.servico || "");
+    for (var k in LPS) if (s === LPS[k].servico || s.indexOf(LPS[k].servico + " - ") === 0) return LPS[k].servico;
+    return LP_LABEL[l.site] || l.site;
+  }
   var SESSION_KEY = "iag_dash_session";
   var TZ = "America/Sao_Paulo";
   var PAGE = 1000;
@@ -161,7 +178,7 @@
 
     Promise.all([
       fetchAll("lp_leads", "select=id,site,servico,nome,whatsapp,origem,created_at&" + site + range + "&order=created_at.desc"),
-      fetchAll("lp_visits", "select=site,created_at&" + site + range + "&order=created_at.asc"),
+      fetchAll("lp_visits", "select=site,path,created_at&" + site + range + "&order=created_at.asc"),
     ]).then(function (res) {
       if (my !== reqId) return;
       render(res[0], res[1], from, to);
@@ -191,15 +208,15 @@
 
     // Conversão por LP
     var bySite = {};
-    visits.forEach(function (v) { (bySite[v.site] = bySite[v.site] || { v: 0, l: 0 }).v++; });
-    leads.forEach(function (l) { (bySite[l.site] = bySite[l.site] || { v: 0, l: 0 }).l++; });
+    visits.forEach(function (v) { var k = lpOfVisit(v); (bySite[k] = bySite[k] || { v: 0, l: 0 }).v++; });
+    leads.forEach(function (l) { var k = lpOfLead(l); (bySite[k] = bySite[k] || { v: 0, l: 0 }).l++; });
     var tLp = $("t-lp"), sites = Object.keys(bySite);
     if (!sites.length) emptyRow(tLp, 4, "Nenhum dado encontrado");
     else {
       tLp.replaceChildren();
       sites.forEach(function (s) {
         var r = bySite[s], tr = el("tr");
-        tr.appendChild(el("td", null, LP_LABEL[s] || s));
+        tr.appendChild(el("td", null, s));
         tr.appendChild(el("td", { class: "num" }, r.v.toLocaleString("pt-BR")));
         tr.appendChild(el("td", { class: "num" }, r.l.toLocaleString("pt-BR")));
         tr.appendChild(el("td", { class: "num" }, fmtPct(pct(r.l, r.v))));

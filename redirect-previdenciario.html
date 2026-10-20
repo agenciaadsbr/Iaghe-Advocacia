@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR" data-lp="previdenciario">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Encaminhando para o WhatsApp | Iaghe Advocacia</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/icon-32.png">
+  <link rel="apple-touch-icon" href="/assets/brand/icon-180.png">
+  <link rel="preload" href="/assets/fonts/poppins-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    body { background: linear-gradient(180deg, var(--gray-1), var(--gray-2)); color: var(--ink); min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: 1.5rem; }
+    .rd { width: 100%; max-width: 30rem; background: var(--white); border-radius: var(--radius-lg); padding: clamp(1.75rem, 5vw, 2.5rem); box-shadow: var(--shadow); border-top: 5px solid var(--gold); }
+    .rd-logo { height: 64px; width: auto; }
+    .rd h1 { margin-top: 1.75rem; font-size: clamp(1.25rem, 1.05rem + 1vw, 1.6rem); line-height: 1.2; }
+    .rd p { margin-top: .9rem; color: var(--ink-soft); }
+    .rd-bar { margin-top: 1.75rem; height: 4px; background: var(--gray-2); overflow: hidden; border-radius: 4px; }
+    .rd-bar i { display: block; height: 100%; width: 100%; background: var(--gold); transform-origin: left; transform: scaleX(0); }
+    .rd-bar.run i { transition: transform var(--d, 3000ms) linear; transform: scaleX(1); }
+    .rd .btn { margin-top: 1.75rem; }
+    .rd-alt { margin-top: 1rem; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <main class="rd" aria-labelledby="rd-title">
+    <img class="rd-logo" src="/assets/brand/logo-iaghe.png" width="478" height="207" alt="Iaghe Advocacia">
+
+    <div id="rd-ok" hidden>
+      <h1 id="rd-title">Estamos encaminhando você para continuar a conversa pelo WhatsApp</h1>
+      <p>Seus dados foram registrados. Em instantes o WhatsApp será aberto com uma mensagem pronta para a equipe da Iaghe Advocacia.</p>
+      <div class="rd-bar" aria-hidden="true"><i></i></div>
+      <a id="rd-btn" class="btn btn-wa btn-lg btn-block" href="#" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.6a9.4 9.4 0 0 0-8.1 14.2L2.6 21.4l4.7-1.2A9.4 9.4 0 1 0 12 2.6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          <path d="M9.2 7.4c-.2-.5-.4-.5-.7-.5h-.5c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.2 5 4.4 2.5 1 3 .8 3.5.7.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.5-.3l-1.8-.9c-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5l-.9-2Z" fill="currentColor"/>
+        </svg>
+        Abrir o WhatsApp
+      </a>
+      <p class="rd-alt">Se o WhatsApp não abrir sozinho, toque no botão acima.</p>
+    </div>
+
+    <div id="rd-none" hidden>
+      <h1>Para conversar com a equipe, comece pelo formulário</h1>
+      <p>Preencha seu nome e WhatsApp na página para que possamos registrar seu contato.</p>
+      <a class="btn btn-wa btn-lg btn-block" href="/previdenciario#contato">Ir para o formulário</a>
+    </div>
+
+    <noscript><p>Ative o JavaScript ou volte à página inicial para entrar em contato.</p></noscript>
+  </main>
+
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/lead.js"></script>
+  <script src="/assets/js/redirect.js"></script>
+</body>
+</html>

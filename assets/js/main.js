@@ -183,7 +183,7 @@
 
   function goToRedirect() {
     var q = L.utmQuery(utms);
-    window.location.assign("/redirect?r=1" + (topic ? "&a=" + encodeURIComponent(topic) : "") + (q ? "&" + q : ""));
+    window.location.assign((cfg.redirectPath || "/redirect") + "?r=1" + (topic ? "&a=" + encodeURIComponent(topic) : "") + (q ? "&" + q : ""));
   }
 
   form.addEventListener("submit", function (e) {

@@ -9,7 +9,10 @@
   var cameFromForm = params.get("r") === "1";
 
   if (!cameFromForm) {
-    document.getElementById("rd-none").hidden = false;
+    var none = document.getElementById("rd-none");
+    var back = none.querySelector("a");
+    if (back) back.href = (cfg.path || "/") + "#contato";
+    none.hidden = false;
     return;
   }
 

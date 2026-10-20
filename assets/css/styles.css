@@ -1,5 +1,5 @@
 /* =========================================================
-   Iaghe Advocacia — Direito Bancário (v4: padrão visual do site do escritório)
+   Iaghe Advocacia — LPs Direito Bancário e Previdenciário (padrão visual do site do escritório)
    Poppins · preto #020002 · dourado #A37B28 · dourado claro #F7EAA6 · cinza claro
    ========================================================= */
 
@@ -23,6 +23,9 @@
   --line: rgba(2, 0, 2, .10);
   --line-strong: rgba(2, 0, 2, .18);
   --error: #B42318;
+  /* Verde WhatsApp nos botões de contato (tom mais escuro do verde oficial #25D366, para o texto branco ficar legível) */
+  --wa: #1DA851;
+  --wa-hover: #168C43;
 
   --font: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --fs-body: 1rem;
@@ -81,7 +84,7 @@ svg { flex: none; }
 .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-dark); }
 .eyebrow svg { width: 20px; height: 20px; color: var(--gold); }
 
-/* ---------- Botões (dourado, como no site do escritório) ---------- */
+/* ---------- Botões de contato (verde WhatsApp) ---------- */
 .btn {
   --h: 50px;
   position: relative; isolation: isolate; overflow: hidden;
@@ -97,9 +100,9 @@ svg { flex: none; }
 .btn-lg { --h: 58px; font-size: 1.05rem; padding: 0 1.75rem; }
 .btn-sm { --h: 42px; padding: 0 1rem; font-size: .9rem; }
 .btn-block { width: 100%; }
-.btn-wa { background: var(--gold); color: var(--white); box-shadow: 0 10px 24px -14px rgba(163, 123, 40, .9); }
+.btn-wa { background: var(--wa); color: var(--white); box-shadow: 0 10px 24px -14px rgba(29, 168, 81, .95); }
 .btn-wa::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.2) 50%, transparent 70%); transform: translateX(-120%); transition: transform .7s var(--ease); }
-.btn-wa:hover { background: var(--gold-hover); }
+.btn-wa:hover { background: var(--wa-hover); }
 .btn-wa:hover::before { transform: translateX(120%); }
 .btn[disabled] { cursor: progress; opacity: .85; }
 .btn.is-loading .ico { animation: pulse 1s ease-in-out infinite; }
@@ -222,6 +225,12 @@ img.is-missing { opacity: 0 !important; }
 .meter-mark { position: absolute; top: -12px; bottom: -12px; left: var(--at); width: 2px; background: var(--ink); }
 .meter-mark b { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); font-size: .78rem; font-weight: 700; color: var(--ink); white-space: nowrap; }
 .meter-caption { margin-top: .9rem; font-size: .8rem; color: var(--ink-soft); }
+/* Previdenciário: lista de documentos no lugar do medidor */
+.doc-check { margin-top: 2rem; max-width: 31rem; padding: 1.25rem 1.35rem; background: var(--white); border-radius: 12px; box-shadow: var(--shadow); }
+.doc-check-title { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: .75rem; }
+.doc-check ul { display: grid; gap: .6rem; }
+.doc-check li { display: flex; align-items: flex-start; gap: .7rem; font-size: .95rem; font-weight: 500; }
+.doc-check svg { width: 22px; height: 22px; margin-top: .1rem; padding: 3px; border-radius: 50%; background: var(--gold-wash); color: var(--gold-dark); }
 @media (max-width: 420px) { .seg i { font-size: .64rem; left: .35rem; } }
 
 /* =========================================================
@@ -290,15 +299,23 @@ img.is-missing { opacity: 0 !important; }
 /* =========================================================
    CONTATO
    ========================================================= */
-.contact { background: var(--gold-light); }
+.contact {
+  --contact-bg: url("/assets/img/contato-fundo-1600.webp");
+  --contact-bg-sm: url("/assets/img/contato-fundo-900.webp");
+  background-color: #0B0A09; color: var(--white); overflow: hidden; isolation: isolate;
+}
+.contact::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--contact-bg) center / cover no-repeat; }
+.contact::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(8, 7, 6, .92) 0%, rgba(8, 7, 6, .72) 45%, rgba(8, 7, 6, .3) 100%); }
+@media (max-width: 899px) { .contact::before { background-image: var(--contact-bg-sm); background-position: center right; } .contact::after { background: linear-gradient(180deg, rgba(8, 7, 6, .88) 0%, rgba(8, 7, 6, .7) 100%); } }
 .contact-grid { display: grid; gap: 2.25rem; align-items: center; }
 @media (min-width: 900px) { .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 27rem); gap: 5rem; } }
-.contact h2 { max-width: 14ch; }
-.contact-copy > p { margin-top: 1rem; color: var(--ink-soft); max-width: 30rem; }
+.contact h2 { max-width: 14ch; color: var(--white); }
+.contact-copy > p { margin-top: 1rem; color: rgba(255, 255, 255, .82); max-width: 30rem; }
 .contact-flow { margin-top: 1.75rem; display: grid; gap: .85rem; max-width: 30rem; }
-.contact-flow li { display: flex; align-items: center; gap: .9rem; font-size: var(--fs-small); font-weight: 500; }
+.contact-flow li { display: flex; align-items: center; gap: .9rem; font-size: var(--fs-small); font-weight: 500; color: rgba(255, 255, 255, .92); }
 .contact-flow span { width: 38px; height: 38px; flex: none; display: grid; place-items: center; border-radius: 50%; background: var(--gold); color: var(--white); }
 .contact-flow svg { width: 19px; height: 19px; }
+.contact .lead-form { color: var(--ink); box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .8); }
 .lead-form { background: var(--white); border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, 2.1rem); box-shadow: 0 30px 60px -34px rgba(122, 91, 28, .7); display: grid; gap: 1.1rem; border-top: 5px solid var(--gold); }
 .form-title { font-weight: 800; font-size: 1.05rem; text-transform: uppercase; padding-bottom: .9rem; border-bottom: 1px solid var(--line); }
 .form-topic { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .5rem; padding: .6rem .8rem; background: var(--gold-wash); border-radius: var(--radius); font-size: .88rem; }

@@ -7,7 +7,8 @@
   var cfg = window.IAG_CONFIG;
   var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
   var UTM_STORE = "iag_utm";
-  var LAST_LEAD = "iag_last_lead";
+  var LAST_LEAD = "iag_last_lead_" + (cfg.lp || "bancario");
+  var VISIT_KEY = "iag_visit_" + (cfg.lp || "bancario");
 
   function safeGet(key) {
     try { return window.sessionStorage.getItem(key); } catch (e) { return null; }
@@ -149,8 +150,8 @@
 
   // Visita anônima (sem dados pessoais) — alimenta o painel /dash da agência. Uma por sessão.
   function trackVisit() {
-    if (safeGet("iag_visit")) return;
-    safeSet("iag_visit", "1");
+    if (safeGet(VISIT_KEY)) return;
+    safeSet(VISIT_KEY, "1");
     var ref = "";
     try { ref = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e) { ref = ""; }
     rest("lp_visits", { site: cfg.site, referrer: ref || null, path: window.location.pathname }, { keepalive: true, timeout: 8000 })
