@@ -23,7 +23,7 @@ Site estático (HTML/CSS/JS sem build), no mesmo padrão das LPs da ADS BR no Ve
 | `assets/js/dashboard.js` | Login (Supabase Auth), gráfico diário, conversão por LP, tabela de leads |
 | `assets/css/styles.css` | Tokens de cor/tipografia e todas as seções da LP |
 | `assets/fonts/` | Poppins 400/600/700/800 (mesma fonte do site iagheadvocacia.com.br), hospedada no próprio site |
-| `assets/img/` | WebP em duas larguras. Fotos reais (nas duas LPs): `dr-danyllo` (hero) e `equipe-retrato` (Escritório). Imagens geradas: bancário → `documentos` (Superendividamento) e `atendimento` (Como funciona); previdenciário → `beneficio` (Benefício negado) e `atendimento-prev` (Como funciona); as duas → `contato-fundo` (fundo escuro do formulário, 1600 desktop / 900 celular). |
+| `assets/img/` | WebP em duas larguras. Fotos reais (nas duas LPs): `dr-danyllo` (hero) e o mosaico da seção Escritório: `escritorio-espera`, `escritorio-sala`, `escritorio-ambiente` e `escritorio-recepcao` (fotos do Drive do escritório). `equipe-retrato` não é mais usada. Imagens geradas: bancário → `documentos` (Superendividamento) e `atendimento` (Como funciona); previdenciário → `beneficio` (Benefício negado) e `atendimento-prev` (Como funciona); as duas → `contato-fundo` (fundo escuro do formulário, 1600 desktop / 900 celular). |
 | `assets/brand/` | Logo oficial (`logo-iaghe.png`, usada no header, rodapé e /redirect) e versão clara (`logo-iaghe-claro.png`, login do painel); ícones da aba `icon-32.png` e `icon-180.png` |
 | `assets/og.jpg`, `assets/og-previdenciario.jpg` | Imagens de compartilhamento 1200×630 de cada LP |
 | `vercel.json` | URLs limpas e cabeçalhos |
